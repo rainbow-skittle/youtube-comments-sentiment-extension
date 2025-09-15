@@ -4,7 +4,7 @@ setup(
     name = 'youtube',
     version= '0.0.0',
     author= 'priyanka',
-    author_email= 'nachakuripriyanka@gnail.com',
+    author_email= 'nachakuripriyanka@gmail.com',
     packages= find_packages(),
     install_requires = []
 
