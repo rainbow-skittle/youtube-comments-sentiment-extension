@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
+COPY tfidf_vectorizer.pkl /app/flask_api/tfidf_vectorizer.pkl
 
 CMD ["python", "flask_api/main.py"]
 EXPOSE 5001
+
+
