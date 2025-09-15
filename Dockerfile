@@ -8,12 +8,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy everything
 COPY . /app
 
+# Install Python deps
 RUN pip install --no-cache-dir -r requirements.txt
-COPY tfidf_vectorizer.pkl /app/flask_api/tfidf_vectorizer.pkl
 
-CMD ["python", "flask_api/main.py"]
+# Make sure tfidf_vectorizer.pkl is inside the container
+COPY tfidf_vectorizer.pkl /app/tfidf_vectorizer.pkl
+
+# Expose Flask port
 EXPOSE 5001
 
+# Run Flask app
+CMD ["python", "flask_api/main.py"]
 
