@@ -37,3 +37,71 @@ stages:
       md5: ba42408e7bd1e85685474d6a349ae57e.dir
       size: 5134850
       nfiles: 2
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+    - path: data/interim/train_processed.csv
+      hash: md5
+      md5: 35027dfda8274bd9356544f2ff358aa4
+      size: 4134324
+    - path: src/model/model_building.py
+      hash: md5
+      md5: 7535a489e792c486bd48d008c4e673c4
+      size: 5474
+    params:
+      params.yaml:
+        model_building.learning_rate: 0.09
+        model_building.max_depth: 20
+        model_building.max_features: 1000
+        model_building.n_estimators: 367
+        model_building.ngram_range:
+        - 1
+        - 3
+    outs:
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: 12bfb86f3f00ad87b18ed18b9c7a3cad
+      size: 3886709
+    - path: tfidf_vectorizer.pkl
+      hash: md5
+      md5: 5996670d022e16ff588939b2cdee440c
+      size: 36874
+  model_evaluation:
+    cmd: python src/model/model_evaluation.py
+    deps:
+    - path: data/interim/test_processed.csv
+      hash: md5
+      md5: 4f30375397ec89fead1745ee6d70f201
+      size: 1000526
+    - path: data/interim/train_processed.csv
+      hash: md5
+      md5: 35027dfda8274bd9356544f2ff358aa4
+      size: 4134324
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: 12bfb86f3f00ad87b18ed18b9c7a3cad
+      size: 3886709
+    - path: src/model/model_evaluation.py
+      hash: md5
+      md5: c1a0cef6b97612fe9cf0a39e1cf203d1
+      size: 7167
+    - path: tfidf_vectorizer.pkl
+      hash: md5
+      md5: 5996670d022e16ff588939b2cdee440c
+      size: 36874
+    outs:
+    - path: experiment_info.json
+      hash: md5
+      md5: 924463afdcae1837beaf2df90aac40b6
+      size: 87
+  model_registration:
+    cmd: python src/model/register_model.py
+    deps:
+    - path: experiment_info.json
+      hash: md5
+      md5: 924463afdcae1837beaf2df90aac40b6
+      size: 87
+    - path: src/model/register_model.py
+      hash: md5
+      md5: b3dc598a75d1b3ea270d9bf5125dcafd
+      size: 2426
