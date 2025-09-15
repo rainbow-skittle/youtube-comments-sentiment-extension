@@ -84,7 +84,7 @@ def load_model_and_vectorizer(model_name, model_version, vectorizer_path):
 # model, vectorizer = load_model("./lgbm_model.pkl", "./tfidf_vectorizer.pkl")  
 
 # Initialize the model and vectorizer
-model, vectorizer = load_model_and_vectorizer("yt_chrome_plugin_model", "1", "/app/flask_api/tfidf_vectorizer.pkl")  # Update paths and versions as needed
+model, vectorizer = load_model_and_vectorizer("yt_chrome_plugin_model", "1", "/app/tfidf_vectorizer.pkl")  # Update paths and versions as needed
 
 @app.route('/')
 def home():
