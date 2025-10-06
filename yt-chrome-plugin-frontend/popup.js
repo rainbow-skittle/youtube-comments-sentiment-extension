@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   const outputDiv = document.getElementById("output");
-  const API_KEY = 'AIzaSyDod09G8FbRI1eso4NwDk6WcUON03ItNVg';  
+  const API_KEY = 'API-KEY';  
   // const API_URL = 'http://127.0.0.1:5000';
   const API_URL = 'http://ec2-18-215-169-8.compute-1.amazonaws.com:5001';
 
